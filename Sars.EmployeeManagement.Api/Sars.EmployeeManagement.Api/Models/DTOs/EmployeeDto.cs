@@ -9,7 +9,7 @@ namespace Sars.EmployeeManagement.Api.Models.DTOs
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
-        public int Surname { get; set; }
+        public string Surname { get; set; }
         public string EmployeeNumber { get; set; }
         public int ContactDetailsId { get; set; }
         public int AddressDetailsId { get; set; }

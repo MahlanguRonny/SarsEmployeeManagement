@@ -14,11 +14,12 @@ namespace Sars.EmployeeManagement.Api.Models
         [Required]
         public string FirstName { get; set; }
         [Required]
-        public int Surname { get; set; }
+        public string Surname { get; set; }
         [Required]
         public string EmployeeNumber { get; set; }
         public int ContactDetailsId { get; set; }
         public int AddressDetailsId { get; set; }
+        public bool Active { get; set; }
 
     }
 }
