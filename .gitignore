@@ -6,3 +6,4 @@
 *.suo
 /Sars.EmployeeManagement.Api/Sars.EmployeeManagement.Api/obj
 /.vs
+/Sars.EmployeeManagement.Api/Sars.EmployeeManagement.Api/bin/Debug/net5.0
