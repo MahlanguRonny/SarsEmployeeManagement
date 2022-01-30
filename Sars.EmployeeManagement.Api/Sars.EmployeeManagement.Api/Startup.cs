@@ -8,6 +8,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Sars.EmployeeManagement.Api.Models;
+using Sars.EmployeeManagement.Api.Models.DTOs;
+using Sars.EmployeeManagement.Api.Models.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,7 @@ namespace Sars.EmployeeManagement.Api
 
             services.AddControllers();
             services.AddDbContext<EmployeeContext>(x => x.UseSqlServer(Configuration["ConnectionString:SarsEmployeeDb"]));
+            services.AddScoped<IDatabaseRepository<EmployeeDto>, EmployeeDatabaseManager>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sars.EmployeeManagement.Api", Version = "v1" });
