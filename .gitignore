@@ -7,3 +7,8 @@
 /Sars.EmployeeManagement.Api/Sars.EmployeeManagement.Api/obj
 /.vs
 /Sars.EmployeeManagement.Api/Sars.EmployeeManagement.Api/bin/Debug/net5.0
+/Sars.EmployeeManagement.Api/Sars.EmployeeManagement.Tests/bin/Debug/net5.0
+/Sars.EmployeeManagement.Api/Sars.EmployeeManagement.Tests/obj
+/Sars.EmployeeManagement.Api/.vs/Sars.EmployeeManagement.Api/v16/TestStore/0
+/Sars.EmployeeManagement.Api/Sars.EmployeeManagement.Api/bin/Release/net5.0
+/Sars.EmployeeManagement.Api/Sars.EmployeeManagement.Tests/bin/Release/net5.0
