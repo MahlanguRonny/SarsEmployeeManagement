@@ -20,11 +20,11 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
             using var transaction = _employeeContext.Database.BeginTransaction();
             var newContact = _employeeContext.ContactDetails.Add(new ContactDetail
             {
-                EmailAddress = entity.ContactDetail.EmailAddress,
-                FacebookLink = entity.ContactDetail.FacebookLink,
-                LandLineNumber = entity.ContactDetail.LandLineNumber,
-                LinkedInLink = entity.ContactDetail.LinkedInLink,
-                MobileNumber = entity.ContactDetail.MobileNumber
+                EmailAddress = entity.ContactDetailDto.EmailAddress,
+                FacebookLink = entity.ContactDetailDto.FacebookLink,
+                LandLineNumber = entity.ContactDetailDto.LandLineNumber,
+                LinkedInLink = entity.ContactDetailDto.LinkedInLink,
+                MobileNumber = entity.ContactDetailDto.MobileNumber
             });
 
             _employeeContext.SaveChanges();
@@ -110,13 +110,19 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
             if (empDbEntity != null)
             {
                 var contactDbEntity = _employeeContext.ContactDetails.FirstOrDefault(x => x.Id == empDbEntity.ContactDetailsId);
-                contactDbEntity.LandLineNumber = entity.ContactDetail.LandLineNumber;
-                contactDbEntity.LinkedInLink = entity.ContactDetail.LinkedInLink;
-                contactDbEntity.FacebookLink = entity.ContactDetail.FacebookLink;
-                contactDbEntity.MobileNumber = entity.ContactDetail.MobileNumber;
+                contactDbEntity.LandLineNumber = entity.ContactDetailDto.LandLineNumber;
+                contactDbEntity.LinkedInLink = entity.ContactDetailDto.LinkedInLink;
+                contactDbEntity.FacebookLink = entity.ContactDetailDto.FacebookLink;
+                contactDbEntity.MobileNumber = entity.ContactDetailDto.MobileNumber;
 
                 _employeeContext.Attach(contactDbEntity);
                 _employeeContext.SaveChanges();
+
+                var dbAddressEntity = _employeeContext.EmployeeAddresses.FirstOrDefault(x => x.Id == empDbEntity.AddressDetailsId);
+                dbAddressEntity.City = entity.AddressDto.City;
+                dbAddressEntity.PostalCode = entity.AddressDto.PostalCode;
+                dbAddressEntity.StreetName = entity.AddressDto.StreetName;
+                dbAddressEntity.Suburb = entity.AddressDto.Suburb;
 
 
                 empDbEntity.FirstName = entity.FirstName;
@@ -125,6 +131,7 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
 
                 _employeeContext.Attach(empDbEntity);
                 updateResult = _employeeContext.SaveChanges() > 0;
+                transaction.Commit();
             }
 
             return updateResult;

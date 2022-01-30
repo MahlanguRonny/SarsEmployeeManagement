@@ -30,7 +30,7 @@ namespace Sars.EmployeeManagement.Api.Controllers
 
         [HttpPost]
         [Route("NewEmployee")]
-        public IActionResult NewEmployee(EmployeeDto employeeDto)
+        public IActionResult NewEmployee([FromBody] EmployeeDto employeeDto)
         {
             if (employeeDto == null)
             {
@@ -65,6 +65,18 @@ namespace Sars.EmployeeManagement.Api.Controllers
                 return NotFound("The Employee record couldn't be found.");
             }
             _databaseRepository.Delete(id);
+            return NoContent();
+        }
+
+        [HttpPut]
+        public IActionResult UpdateEmployee([FromBody] EmployeeDto employeeDto)
+        {
+            if (employeeDto == null)
+            {
+                return BadRequest("Employee object cannot be null");
+            }
+
+            _databaseRepository.Update(employeeDto);
             return NoContent();
         }
     }

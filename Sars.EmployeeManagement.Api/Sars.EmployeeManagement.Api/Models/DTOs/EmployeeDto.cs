@@ -13,7 +13,7 @@ namespace Sars.EmployeeManagement.Api.Models.DTOs
         public string EmployeeNumber { get; set; }
         public int ContactDetailsId { get; set; }
         public int AddressDetailsId { get; set; }
-        public ContactDetail ContactDetail { get; set; }
+        public ContactDetailDto ContactDetailDto { get; set; }
         public AddressDto AddressDto { get; set; }
     }
 }
