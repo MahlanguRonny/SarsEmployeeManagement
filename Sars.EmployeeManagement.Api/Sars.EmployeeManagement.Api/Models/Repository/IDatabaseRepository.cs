@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Sars.EmployeeManagement.Api.Models.Repository
 {
     public interface IDatabaseRepository<TEntity>
     {
-        IEnumerable<TEntity> GetAll();
-        TEntity Get(int id);
-        bool Add(TEntity entity);
-        bool Update(TEntity entity);
-        bool Delete(int id);
+        Task<IEnumerable<TEntity>> GetAll();
+        Task<TEntity> Get(int id);
+        Task<bool> Add(TEntity entity);
+        Task<bool> Update(TEntity entity);
+        Task<bool> Delete(int id);
     }
 }

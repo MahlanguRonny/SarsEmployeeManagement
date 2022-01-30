@@ -22,22 +22,22 @@ namespace Sars.EmployeeManagement.Api.Controllers
 
         [HttpGet]
         [Route("GetEmployeeList")]
-        public IActionResult GetEmployeeList()
+        public async Task<IActionResult> GetEmployeeList()
         {
-            IEnumerable<EmployeeDto> employees = _databaseRepository.GetAll();
+            IEnumerable<EmployeeDto> employees = await _databaseRepository.GetAll();
             return Ok(employees);
         }
 
         [HttpPost]
         [Route("NewEmployee")]
-        public IActionResult NewEmployee([FromBody] EmployeeDto employeeDto)
+        public async Task<IActionResult> NewEmployee([FromBody] EmployeeDto employeeDto)
         {
             if (employeeDto == null)
             {
                 return BadRequest("Employee object is null");
             }
 
-            _databaseRepository.Add(employeeDto);
+            await _databaseRepository.Add(employeeDto);
             return CreatedAtRoute(
                  "GetEmployeeById",
                  new { Id = employeeDto.Id },
@@ -46,9 +46,9 @@ namespace Sars.EmployeeManagement.Api.Controllers
 
         [HttpGet]
         [Route("GetEmployeeById/{id}")]
-        public IActionResult GetEmployeeById(int id)
+        public async Task<IActionResult> GetEmployeeById(int id)
         {
-            EmployeeDto employee = _databaseRepository.Get(id);
+            EmployeeDto employee = await _databaseRepository.Get(id);
             if (employee == null)
             {
                 return NotFound("Employee record with supplied details not found");
@@ -58,25 +58,25 @@ namespace Sars.EmployeeManagement.Api.Controllers
 
         // DELETE: api/Employee/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == 0)
             {
                 return NotFound("The Employee record couldn't be found.");
             }
-            _databaseRepository.Delete(id);
+            await _databaseRepository.Delete(id);
             return NoContent();
         }
 
         [HttpPut]
-        public IActionResult UpdateEmployee([FromBody] EmployeeDto employeeDto)
+        public async Task<IActionResult> UpdateEmployee([FromBody] EmployeeDto employeeDto)
         {
             if (employeeDto == null)
             {
                 return BadRequest("Employee object cannot be null");
             }
 
-            _databaseRepository.Update(employeeDto);
+            await _databaseRepository.Update(employeeDto);
             return NoContent();
         }
     }

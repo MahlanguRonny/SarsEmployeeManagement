@@ -1,4 +1,5 @@
-﻿using Sars.EmployeeManagement.Api.Models.DTOs;
+﻿using Microsoft.EntityFrameworkCore;
+using Sars.EmployeeManagement.Api.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
             _employeeContext = employeeContext;
         }
 
-        public bool Add(EmployeeDto entity)
+        public async Task<bool> Add(EmployeeDto entity)
         {
             using var transaction = _employeeContext.Database.BeginTransaction();
             var newContact = _employeeContext.ContactDetails.Add(new ContactDetail
@@ -27,7 +28,7 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
                 MobileNumber = entity.ContactDetailDto.MobileNumber
             });
 
-            _employeeContext.SaveChanges();
+           await  _employeeContext.SaveChangesAsync();
 
             var newAddress = _employeeContext.EmployeeAddresses.Add(new EmployeeAddress
             {
@@ -38,7 +39,7 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
                 Suburb = entity.AddressDto.Suburb
             });
 
-            _employeeContext.SaveChanges();
+            await _employeeContext.SaveChangesAsync();
 
             _employeeContext.Employees.Add(new Employee
             {
@@ -50,17 +51,17 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
                 Active = true
             });
 
-            var result = _employeeContext.SaveChanges() > 0;
+            var result = await _employeeContext.SaveChangesAsync() > 0;
 
             transaction.Commit();
 
             return result;
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             bool deleted = false;
-            var dbEnity = _employeeContext.Employees.FirstOrDefault(x => x.Id == id);
+            var dbEnity = await _employeeContext.Employees.FirstOrDefaultAsync(x => x.Id == id);
             if(dbEnity != null)
             {
                 dbEnity.Active = false;
@@ -72,10 +73,10 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
             return deleted;
         }
 
-        public EmployeeDto Get(int id)
+        public async Task<EmployeeDto> Get(int id)
         {
             EmployeeDto employeeDto = new EmployeeDto();
-            var dbEntity = _employeeContext.Employees.FirstOrDefault(x => x.Id == id);
+            var dbEntity = await _employeeContext.Employees.FirstOrDefaultAsync(x => x.Id == id);
             if (dbEntity != null)
             {
                 employeeDto.Id = dbEntity.Id;
@@ -89,27 +90,27 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
             return employeeDto;
         }
 
-        public IEnumerable<EmployeeDto> GetAll()
+        public async Task<IEnumerable<EmployeeDto>> GetAll()
         {
-            var employeeList = _employeeContext.Employees.Select(x => new EmployeeDto
+            var employeeList = await _employeeContext.Employees.Select(x => new EmployeeDto
             {
                 Id = x.Id,
                 EmployeeNumber = x.EmployeeNumber,
                 FirstName = x.FirstName,
                 Surname = x.Surname
-            }).ToList();
+            }).ToListAsync();
 
             return employeeList;
         }
 
-        public bool Update(EmployeeDto entity)
+        public async Task<bool> Update(EmployeeDto entity)
         {
             bool updateResult = false;
             using var transaction = _employeeContext.Database.BeginTransaction();
-            var empDbEntity = _employeeContext.Employees.FirstOrDefault(x => x.Id == entity.Id);
+            var empDbEntity = await _employeeContext.Employees.FirstOrDefaultAsync(x => x.Id == entity.Id);
             if (empDbEntity != null)
             {
-                var contactDbEntity = _employeeContext.ContactDetails.FirstOrDefault(x => x.Id == empDbEntity.ContactDetailsId);
+                var contactDbEntity = await _employeeContext.ContactDetails.FirstOrDefaultAsync(x => x.Id == empDbEntity.ContactDetailsId);
                 contactDbEntity.LandLineNumber = entity.ContactDetailDto.LandLineNumber;
                 contactDbEntity.LinkedInLink = entity.ContactDetailDto.LinkedInLink;
                 contactDbEntity.FacebookLink = entity.ContactDetailDto.FacebookLink;
@@ -118,7 +119,7 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
                 _employeeContext.Attach(contactDbEntity);
                 _employeeContext.SaveChanges();
 
-                var dbAddressEntity = _employeeContext.EmployeeAddresses.FirstOrDefault(x => x.Id == empDbEntity.AddressDetailsId);
+                var dbAddressEntity = await _employeeContext.EmployeeAddresses.FirstOrDefaultAsync(x => x.Id == empDbEntity.AddressDetailsId);
                 dbAddressEntity.City = entity.AddressDto.City;
                 dbAddressEntity.PostalCode = entity.AddressDto.PostalCode;
                 dbAddressEntity.StreetName = entity.AddressDto.StreetName;
