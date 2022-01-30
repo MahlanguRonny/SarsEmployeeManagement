@@ -39,13 +39,14 @@ namespace Sars.EmployeeManagement.Api.Controllers
 
             _databaseRepository.Add(employeeDto);
             return CreatedAtRoute(
-                 "Get",
+                 "GetEmployeeById",
                  new { Id = employeeDto.Id },
                  employeeDto);
         }
 
-        [HttpGet("{id}", Name = "Get")]
-        public IActionResult Get(int id)
+        [HttpGet]
+        [Route("GetEmployeeById/{id}")]
+        public IActionResult GetEmployeeById(int id)
         {
             EmployeeDto employee = _databaseRepository.Get(id);
             if (employee == null)
@@ -53,6 +54,18 @@ namespace Sars.EmployeeManagement.Api.Controllers
                 return NotFound("Employee record with supplied details not found");
             }
             return Ok(employee);
+        }
+
+        // DELETE: api/Employee/5
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (id == 0)
+            {
+                return NotFound("The Employee record couldn't be found.");
+            }
+            _databaseRepository.Delete(id);
+            return NoContent();
         }
     }
 }

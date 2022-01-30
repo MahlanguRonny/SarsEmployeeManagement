@@ -8,6 +8,6 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
         TEntity Get(int id);
         bool Add(TEntity entity);
         bool Update(TEntity entity);
-        void Delete(int id);
+        bool Delete(int id);
     }
 }

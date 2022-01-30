@@ -46,23 +46,30 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
                 ContactDetailsId = newContact.Entity.Id,
                 EmployeeNumber = entity.EmployeeNumber,
                 FirstName = entity.FirstName,
-                Surname = entity.Surname
+                Surname = entity.Surname,
+                Active = true
             });
 
-            var result = _employeeContext.SaveChanges() > 1 ;
+            var result = _employeeContext.SaveChanges() > 0;
 
             transaction.Commit();
 
             return result;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            bool deleted = false;
             var dbEnity = _employeeContext.Employees.FirstOrDefault(x => x.Id == id);
             if(dbEnity != null)
             {
-                //
+                dbEnity.Active = false;
+                _employeeContext.Attach(dbEnity);
+                deleted = _employeeContext.SaveChanges() > 0;
+
             }
+
+            return deleted;
         }
 
         public EmployeeDto Get(int id)
@@ -117,7 +124,7 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
                 empDbEntity.EmployeeNumber = entity.EmployeeNumber;
 
                 _employeeContext.Attach(empDbEntity);
-                updateResult = _employeeContext.SaveChanges() > 1;
+                updateResult = _employeeContext.SaveChanges() > 0;
             }
 
             return updateResult;
