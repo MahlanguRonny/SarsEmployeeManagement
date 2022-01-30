@@ -10,8 +10,10 @@ namespace Sars.EmployeeManagement.Api.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string LandLineNumber { get; set; }
+        [Required]
         public string MobileNumber { get; set; }
         public string FacebookLink { get; set; }
+        [Required]
         public string EmailAddress { get; set; }
         public string LinkedInLink { get; set; }
     }
