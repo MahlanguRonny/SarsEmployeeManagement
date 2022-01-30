@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/PrivateDev/v16/.suo
+*.suo
+/Sars.EmployeeManagement.Api/Sars.EmployeeManagement.Api/obj
+/.vs
