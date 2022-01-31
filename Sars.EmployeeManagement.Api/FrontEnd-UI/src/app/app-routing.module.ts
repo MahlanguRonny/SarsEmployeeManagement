@@ -1,3 +1,4 @@
+import { HomepageComponent } from './shared/homepage/homepage.component';
 import { NewemployeeComponent } from './components/newemployee/newemployee.component';
 import { ListemployeesComponent } from './components/listemployees/listemployees.component';
 import { NgModule } from '@angular/core';
@@ -8,6 +9,7 @@ const routes: Routes = [
   { path: 'listemployees', component: ListemployeesComponent },
   { path: 'employeedetails', component: EmployeedetailsComponent },
   { path: 'newemployee', component: NewemployeeComponent },
+  { path: '', component: HomepageComponent },
 ];
 
 @NgModule({

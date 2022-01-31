@@ -26,7 +26,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { NewemployeeComponent } from './components/newemployee/newemployee.component';
-
+import { FooterComponent } from './shared/footer/footer.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HomepageComponent } from './shared/homepage/homepage.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +38,10 @@ import { NewemployeeComponent } from './components/newemployee/newemployee.compo
     ConfirmComponent,
     PleasewaitComponent,
     EmployeedetailsComponent,
-    NewemployeeComponent
+    NewemployeeComponent,
+    FooterComponent,
+    NavbarComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +64,7 @@ import { NewemployeeComponent } from './components/newemployee/newemployee.compo
     ReactiveFormsModule,
     MatCheckboxModule,
     MatExpansionModule,
+    MatToolbarModule,
 
   ],
   providers: [],
