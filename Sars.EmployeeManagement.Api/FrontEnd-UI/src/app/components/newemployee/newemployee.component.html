@@ -2,10 +2,10 @@
 <div class="container">
     <div class="se-container " style="width:100%">
       <br/>         
-     <h4 class="pull-left">Employee Details</h4>
+     <h4 class="pull-left">New Employee Details</h4>
           
       <div class="rowspacesmall"></div>
-      <form [formGroup]="empEditForm" (ngSubmit)="onSubmit()" *ngIf="empEditForm">
+      <form [formGroup]="newEmpForm" (ngSubmit)="onSubmit()" *ngIf="newEmpForm">
       <mat-accordion class="example-headers-align" multi>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -21,14 +21,14 @@
               <mat-form-field class="col-6">
                 <input matInput placeholder="First Name" formControlName="firstName">
                 <mat-error>
-                  <span *ngIf="!empEditForm.get('firstName')?.hasError && empEditForm.get('FirstName')?.touched">Please enter first name</span>
+                  <span *ngIf="!newEmpForm.get('firstName')?.hasError && newEmpForm.get('FirstName')?.touched">Please enter first name</span>
                 </mat-error>
               </mat-form-field>
            
               <mat-form-field class="col-6">
                 <input matInput placeholder="Surname" formControlName="surname">
                 <mat-error>
-                  <span *ngIf="!empEditForm.get('surname')?.valid && empEditForm.get('Surname')?.touched">Please enter surname</span>
+                  <span *ngIf="!newEmpForm.get('surname')?.valid && newEmpForm.get('Surname')?.touched">Please enter surname</span>
                 </mat-error>
               </mat-form-field>
             </div>
@@ -36,7 +36,7 @@
               <mat-form-field class="col-6">
                 <input matInput placeholder="Employee Number" formControlName="employeeNumber">
                 <mat-error>
-                  <span *ngIf="!empEditForm.get('employeeNumber')?.valid && empEditForm.get('employeeNumber')?.touched">Please enter employee number</span>
+                  <span *ngIf="!newEmpForm.get('employeeNumber')?.valid && newEmpForm.get('employeeNumber')?.touched">Please enter employee number</span>
                 </mat-error>
               </mat-form-field>
                 <div class="col-6"><mat-label>Is User Deleted? </mat-label>
@@ -58,17 +58,17 @@
           </mat-expansion-panel-header>
           <mat-card class="example-card">
             <div class="row">
-                <input matInput placeholder="Mobile Number" formControlName="employeeId" [hidden]="true">
+                <input formControlName="employeeId" [hidden]="true">
               <mat-form-field class="col-6">
                 <input matInput placeholder="Mobile Number" formControlName="mobileNumber">
                 <mat-error>
-                  <span *ngIf="!empEditForm.get('mobileNumber')?.valid && empEditForm.get('mobileNumber')?.touched">Please mobile number</span>
+                  <span *ngIf="!newEmpForm.get('mobileNumber')?.valid && newEmpForm.get('mobileNumber')?.touched">Please mobile number</span>
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="col-6">
                 <input matInput placeholder="Email Address" formControlName="emailAddress">
                 <mat-error>
-                  <span *ngIf="!empEditForm.get('emailAddress')?.valid && empEditForm.get('emailAddress')?.touched">Please email address</span>
+                  <span *ngIf="!newEmpForm.get('emailAddress')?.valid && newEmpForm.get('emailAddress')?.touched">Please mobile number</span>
                 </mat-error>
               </mat-form-field>
               <mat-form-field class="col-6">
@@ -78,7 +78,7 @@
                 <input matInput placeholder="Facebook page link" formControlName="facebookLink">
               </mat-form-field>
               <mat-form-field class="col-6">
-                <input matInput placeholder="Mobile Number" formControlName="landLineNumber">
+                <input matInput placeholder="Landline Number" formControlName="landLineNumber">
               </mat-form-field>
             </div>     
           </mat-card>
@@ -114,7 +114,7 @@
       <br/>
               <div class="row">
                     <div class="col-6">
-                        <button  class="btn btn-primary">Update</button>
+                        <button  class="btn btn-primary">Save</button>
                     </div>
                     <div class="col-6">
                         <button type="button" class="btn btn-primary" [routerLink]="'components/listemployees'">Cancel</button>

@@ -27,7 +27,10 @@ export class EmployeemanagementService {
     }
 
     updateEmployee(employeeDto: IEmployeeDto): Observable<object>{
-      console.log('to the api ' + JSON.stringify(employeeDto));
       return this.http.put(`${this.employeeManagementApi}/api/employee/UpdateEmployee`, employeeDto);
+    }
+
+    addNewEmployee(employeeDto: IEmployeeDto): Observable<object>{
+      return this.http.post(`${this.employeeManagementApi}/api/employee/NewEmployee`, employeeDto);
     }
 }

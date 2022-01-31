@@ -25,6 +25,7 @@ import { EmployeedetailsComponent } from './components/employeedetails/employeed
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { NewemployeeComponent } from './components/newemployee/newemployee.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ErrordialogComponent,
     ConfirmComponent,
     PleasewaitComponent,
-    EmployeedetailsComponent
+    EmployeedetailsComponent,
+    NewemployeeComponent
   ],
   imports: [
     BrowserModule,

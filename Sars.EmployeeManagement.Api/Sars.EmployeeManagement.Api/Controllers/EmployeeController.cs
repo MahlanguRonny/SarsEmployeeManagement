@@ -37,11 +37,8 @@ namespace Sars.EmployeeManagement.Api.Controllers
                 return BadRequest("Employee object is null");
             }
 
-            await _databaseRepository.Add(employeeDto);
-            return CreatedAtRoute(
-                 "GetEmployeeById",
-                 new { Id = employeeDto.Id },
-                 employeeDto);
+            var result = await _databaseRepository.Add(employeeDto);
+            return Ok(result);
         }
 
         [HttpGet]
