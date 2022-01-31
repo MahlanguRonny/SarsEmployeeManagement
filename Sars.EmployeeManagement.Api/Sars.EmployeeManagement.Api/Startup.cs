@@ -33,6 +33,14 @@ namespace Sars.EmployeeManagement.Api
             services.AddControllers();
             services.AddDbContext<EmployeeContext>(x => x.UseSqlServer(Configuration["ConnectionString:SarsEmployeeDb"]));
             services.AddScoped<IDatabaseRepository<EmployeeDto>, EmployeeDatabaseManager>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                  "CorsPolicy",
+                  builder => builder.WithOrigins("http://localhost:4200")
+                  .AllowAnyMethod()
+                  .AllowAnyHeader());
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sars.EmployeeManagement.Api", Version = "v1" });
@@ -49,6 +57,7 @@ namespace Sars.EmployeeManagement.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sars.EmployeeManagement.Api v1"));
             }
 
+            app.UseCors("CorsPolicy");
             app.UseRouting();
 
             app.UseAuthorization();
@@ -57,6 +66,8 @@ namespace Sars.EmployeeManagement.Api
             {
                 endpoints.MapControllers();
             });
+            app.UseCors("AllowOrigin");
+
         }
     }
 }

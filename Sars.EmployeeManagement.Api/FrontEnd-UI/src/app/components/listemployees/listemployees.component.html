@@ -1,0 +1,73 @@
+<div class="rowspace"></div>
+<div class="container">
+    <div class="se-container " style="width:100%">
+        <br/>
+     <h4 class="pull-left">SARS Employees</h4>
+
+      <div class="rowspacesmall"></div>
+<!-- 
+       <div style="white-space: nowrap;widows: 100%;height:50px; width: 100%;">
+          <div class="se-header" style="float:right;height: 25px;">
+              <table>
+                  <tr>
+                    <td>Active Users:&nbsp;<mat-slide-toggle class="example-margin" [checked]="filter_ActiveUsers" (change)="toggleChange()">
+                      </mat-slide-toggle></td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td>&nbsp;&nbsp;</td>
+                    <td><mat-form-field>
+                        <input matInput (keyup)="searchUser($event.target.value)" placeholder="Search" type="text">
+                      </mat-form-field></td>
+                  </tr>
+                </table>
+          </div>
+      </div> -->
+
+
+  <mat-table class="table-bordered" [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> EMP ID </mat-header-cell>
+      <mat-cell *matCellDef="let emp"> {{emp.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> FIRST NAME</mat-header-cell>
+      <mat-cell *matCellDef="let emp"> {{emp.firstName}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="surname">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> SURNAME </mat-header-cell>
+      <mat-cell *matCellDef="let emp"> {{emp.surname}}  </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> USER IDENTITY </mat-header-cell>
+      <mat-cell *matCellDef="let emp"> {{emp.employeeNumber}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> USER ACTIVE</mat-header-cell>
+      <mat-cell *matCellDef="let emp"><mat-slide-toggle checked="{{emp.active}}"></mat-slide-toggle> </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef > ACTIONS</mat-header-cell>
+      <mat-cell *matCellDef="let emp">
+          <mat-card-actions>
+          <a mat-stroked-button color="primary" (click)="viewEmpDetails(emp)" title="View employee details"><mat-icon>info</mat-icon></a> &nbsp;
+        <a mat-stroked-button color="warn" (click)="deleteEmployee(emp)" title="delete employee"><mat-icon>delete</mat-icon></a>
+      </mat-card-actions>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+</div>
+
+

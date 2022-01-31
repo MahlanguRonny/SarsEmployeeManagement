@@ -97,7 +97,8 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
                 Id = x.Id,
                 EmployeeNumber = x.EmployeeNumber,
                 FirstName = x.FirstName,
-                Surname = x.Surname
+                Surname = x.Surname,
+                 Active = x.Active
             }).ToListAsync();
 
             return employeeList;
