@@ -21,6 +21,9 @@ import { ConfirmComponent } from './shared/dialogs/confirm/confirm.component';
 import { PleasewaitComponent } from './shared/dialogs/pleasewait/pleasewait.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EmployeedetailsComponent } from './components/employeedetails/employeedetails.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ListemployeesComponent,
     ErrordialogComponent,
     ConfirmComponent,
-    PleasewaitComponent
+    PleasewaitComponent,
+    EmployeedetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +51,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDialogModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,4 +3,52 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+mat-cell.mat-cell, mat-header-cell.mat-header-cell {
+  overflow: visible;
+}
 
+.container, .row {
+  max-width: 100%;
+  width: 100%;
+}
+.importantHeader
+{
+  padding-left: 15px;
+  font-size: 15px;
+  color: #c9021a;
+  font-weight: bolder;
+}
+
+.mat-standard-chip {
+  min-height: 0px;
+  background-color: #c9021a;
+}
+
+.mat-chip {
+  min-height: 0px;
+}
+
+.headerContainer {
+  position: relative;
+  width: 100vw;
+  height: 50px;
+  border: 3px solid blue;
+  background: none;
+}
+
+.red-snackbar {
+    background: #E4152C;
+  }
+
+  .mat-button.mat-small {
+    min-width: 1%;
+}
+
+.fill-space {
+  flex: 11 auto;
+}
+
+.style-success
+{
+  background: green;
+}

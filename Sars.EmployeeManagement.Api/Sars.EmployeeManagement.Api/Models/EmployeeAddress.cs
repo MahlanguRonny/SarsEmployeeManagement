@@ -13,6 +13,5 @@ namespace Sars.EmployeeManagement.Api.Models
         public string City { get; set; }
         public int PostalCode { get; set; }
         public int AddressTypeId { get; set; }
-
     }
 }

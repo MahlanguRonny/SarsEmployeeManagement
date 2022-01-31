@@ -69,6 +69,7 @@ namespace Sars.EmployeeManagement.Api.Controllers
         }
 
         [HttpPut]
+        [Route("UpdateEmployee")]
         public async Task<IActionResult> UpdateEmployee([FromBody] EmployeeDto employeeDto)
         {
             if (employeeDto == null)

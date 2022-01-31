@@ -54,9 +54,9 @@ export class ListemployeesComponent implements OnInit {
   }
 
   viewEmpDetails(emp: IEmployeeDto): void {
-    localStorage.removeItem('employeeId');
-    localStorage.setItem('employeeId', emp.id.toString());
-    this.router.navigate(['update-vms-user']);
+    localStorage.removeItem('empId');
+    localStorage.setItem('empId', emp.id.toString());
+    this.router.navigate(['/employeedetails']);
   }
 
   loadEmployees(): void {

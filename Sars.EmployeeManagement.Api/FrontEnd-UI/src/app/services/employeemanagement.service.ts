@@ -21,4 +21,12 @@ export class EmployeemanagementService {
     deleteEmployee(id: number): Observable<ArrayBuffer>{
       return this.http.delete<ArrayBuffer>(`${this.employeeManagementApi}/api/employee/${id}`);
     }
+
+    getEmployeeById(id: number): Observable<IEmployeeDto>{
+      return this.http.get<IEmployeeDto>(`${this.employeeManagementApi}/api/employee/GetEmployeeById/${id}`);
+    }
+
+    updateEmployee(employeeDto: IEmployeeDto){
+      return this.http.put(`${this.employeeManagementApi}/api/employee/UpdateEmployee`, employeeDto);
+    }
 }

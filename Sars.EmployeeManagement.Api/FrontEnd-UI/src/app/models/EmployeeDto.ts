@@ -1,3 +1,4 @@
+import { IAddressDto } from './AddressDto';
 import { IContactDetailDto } from './ContactDetailsDto';
 
 export interface IEmployeeDto{
@@ -5,8 +6,9 @@ id: number;
 firstName: string;
 surname: string;
 employeeNumber: string;
-Active: boolean;
+active: boolean;
 contactDetailsId: number;
 addressDetailsId: number;
 contactDetailDto: IContactDetailDto;
+addressDto: IAddressDto;
 }

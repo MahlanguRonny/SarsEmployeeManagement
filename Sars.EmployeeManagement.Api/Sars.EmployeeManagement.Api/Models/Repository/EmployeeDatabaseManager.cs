@@ -28,7 +28,7 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
                 MobileNumber = entity.ContactDetailDto.MobileNumber
             });
 
-           await  _employeeContext.SaveChangesAsync();
+            await _employeeContext.SaveChangesAsync();
 
             var newAddress = _employeeContext.EmployeeAddresses.Add(new EmployeeAddress
             {
@@ -62,7 +62,7 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
         {
             bool deleted = false;
             var dbEnity = await _employeeContext.Employees.FirstOrDefaultAsync(x => x.Id == id);
-            if(dbEnity != null)
+            if (dbEnity != null)
             {
                 dbEnity.Active = false;
                 _employeeContext.Attach(dbEnity);
@@ -75,17 +75,38 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
 
         public async Task<EmployeeDto> Get(int id)
         {
-            EmployeeDto employeeDto = new EmployeeDto();
-            var dbEntity = await _employeeContext.Employees.FirstOrDefaultAsync(x => x.Id == id);
-            if (dbEntity != null)
-            {
-                employeeDto.Id = dbEntity.Id;
-                employeeDto.FirstName = dbEntity.FirstName;
-                employeeDto.Surname = dbEntity.Surname;
-                employeeDto.EmployeeNumber = dbEntity.EmployeeNumber;
-                employeeDto.AddressDetailsId = dbEntity.AddressDetailsId;
-                employeeDto.ContactDetailsId = dbEntity.ContactDetailsId;
-            }
+            var employeeDto = await (from emp in _employeeContext.Employees
+                         join contact in _employeeContext.ContactDetails on emp.ContactDetailsId equals contact.Id
+                         join address in _employeeContext.EmployeeAddresses on emp.AddressDetailsId equals address.Id
+                         where emp.Id == id
+                         select new EmployeeDto
+                         {
+                             AddressDetailsId = address.Id,
+                             ContactDetailsId = contact.Id,
+                             EmployeeNumber = emp.EmployeeNumber,
+                             Id = emp.Id,
+                             FirstName = emp.FirstName,
+                             Surname = emp.Surname,
+                             Active = emp.Active,
+                             AddressDto = new AddressDto
+                             {
+                                 AddressTypeId = address.AddressTypeId,
+                                 City = address.City,
+                                 Id = address.Id,
+                                 PostalCode = address.PostalCode,
+                                 StreetName = address.StreetName,
+                                 Suburb = address.Suburb
+                             },
+                             ContactDetailDto = new ContactDetailDto
+                             {
+                                 EmailAddress = contact.EmailAddress,
+                                 FacebookLink = contact.FacebookLink,
+                                 Id = contact.Id,
+                                 LandLineNumber = contact.LandLineNumber,
+                                 LinkedInLink = contact.LinkedInLink,
+                                 MobileNumber = contact.MobileNumber
+                             }
+                         }).FirstOrDefaultAsync();
 
             return employeeDto;
         }
@@ -98,7 +119,7 @@ namespace Sars.EmployeeManagement.Api.Models.Repository
                 EmployeeNumber = x.EmployeeNumber,
                 FirstName = x.FirstName,
                 Surname = x.Surname,
-                 Active = x.Active
+                Active = x.Active
             }).ToListAsync();
 
             return employeeList;

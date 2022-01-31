@@ -1,0 +1,50 @@
+<div class="rowspace"></div>
+<div class="container">
+    <div class="se-container " style="width:100%">
+      <br/>         
+     <h4 class="pull-left">Employee Details</h4>     
+          
+      <div class="rowspacesmall"></div>      
+    <mat-card class="example-card" class="table-bordered">
+      <form [formGroup]="empEditForm" (ngSubmit)="onSubmit()" *ngIf="empEditForm">
+        <div class="row">
+        <mat-form-field class="col-6">
+          <input matInput placeholder="First Name" formControlName="firstName">
+          <mat-error>
+            <span *ngIf="!empEditForm.get('firstName')?.hasError && empEditForm.get('FirstName')?.touched">Please enter first name</span>
+          </mat-error>
+        </mat-form-field>
+     
+        <mat-form-field class="col-6">
+          <input matInput placeholder="Surname" formControlName="surname">
+          <mat-error>
+            <span *ngIf="!empEditForm.get('surname')?.valid && empEditForm.get('Surname')?.touched">Please enter surname</span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field class="col-6">
+          <input matInput placeholder="Employee Number" formControlName="employeeNumber" [readonly]="true">
+          <mat-error>
+            <span *ngIf="!empEditForm.get('employeeNumber')?.valid && empEditForm.get('employeeNumber')?.touched">Please enter windows logon name</span>
+          </mat-error>
+        </mat-form-field>
+          <div class="col-6"><mat-label>Is User Deleted? </mat-label>
+        <mat-checkbox formControlName="active" name="active" class="form-checkbox" id="active" value="Active" placeholder="Is user active">
+        </mat-checkbox> 
+      </div>
+      </div>
+      <br/>
+        <div class="row">
+              <div class="col-6">
+                  <button  class="btn btn-primary">Update</button>
+              </div>
+              <div class="col-6">
+                  <button type="button" class="btn btn-primary" [routerLink]="'/Usermanagement/list-users'">Cancel</button>
+              </div>                  
+          </div>      
+      </form>
+    </mat-card>
+  </div>
+  </div>
+  
