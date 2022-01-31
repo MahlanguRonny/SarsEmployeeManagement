@@ -41,12 +41,12 @@
     </ng-container>
 
     <ng-container matColumnDef="employeeNumber">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> USER IDENTITY </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Employee NO </mat-header-cell>
       <mat-cell *matCellDef="let emp"> {{emp.employeeNumber}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="active">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> USER ACTIVE</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ACTIVE</mat-header-cell>
       <mat-cell *matCellDef="let emp"><mat-slide-toggle checked="{{emp.active}}"></mat-slide-toggle> </mat-cell>
     </ng-container>
 

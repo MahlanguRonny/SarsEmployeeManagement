@@ -18,8 +18,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule  } from '@angular/material/input';
 import { ErrordialogComponent } from './shared/dialogs/errordialog/errordialog.component';
 import { ConfirmComponent } from './shared/dialogs/confirm/confirm.component';
-import { PleasewaitComponent } from './shared/dialogs/pleasewait/pleasewait.component'
+import { PleasewaitComponent } from './shared/dialogs/pleasewait/pleasewait.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatDialogModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,7 +18,7 @@ export class EmployeemanagementService {
       return this.http.get<IEmployeeDto[]>(`${this.employeeManagementApi}/api/employee/GetEmployeeList`);
     }
 
-    deleteEmployee(id: number): Observable<boolean>{
-      return this.http.post<boolean>(`${this.employeeManagementApi}/api/employee/{id}`, id);
+    deleteEmployee(id: number): Observable<ArrayBuffer>{
+      return this.http.delete<ArrayBuffer>(`${this.employeeManagementApi}/api/employee/${id}`);
     }
 }

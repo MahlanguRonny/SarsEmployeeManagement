@@ -1,7 +1,7 @@
 import { IEmployeeDto } from './../../models/EmployeeDto';
 import { EmployeemanagementService } from './../../services/employeemanagement.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -16,9 +16,10 @@ import { ErrordialogComponent } from 'src/app/shared/dialogs/errordialog/errordi
 })
 export class ListemployeesComponent implements OnInit {
 
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
-  // @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
+  public pageEvent!: PageEvent;
 
   constructor(
     private router: Router,
@@ -59,11 +60,11 @@ export class ListemployeesComponent implements OnInit {
   }
 
   loadEmployees(): void {
-    //this.msgService.showLoading();
+    this.msgService.showLoading();
     this.employeeService.getAllEmployees().subscribe(
       res => {
         this.dataSource.data = res;
-        //this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator = this.paginator;
         this.msgService.hideLoading();
       },
       error => {
@@ -103,5 +104,4 @@ export class ListemployeesComponent implements OnInit {
       width: '250px'
     });
   }
-
 }
