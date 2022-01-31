@@ -1,0 +1,21 @@
+.customContainer {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.mat-header-row {
+  background-color: #E4152C;
+}
+
+.mat-header-cell {
+  color: #fff;
+  font-weight: bold;
+}
+
+.mat-row:nth-child(even){
+  background-color:white;
+  }
+
+.mat-row:nth-child(odd){
+  background-color:lightgray;
+  }

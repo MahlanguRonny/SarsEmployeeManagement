@@ -20,6 +20,7 @@ export class ListemployeesComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   public pageEvent!: PageEvent;
+  // public filter_ActiveEmployees = true;
 
   constructor(
     private router: Router,
@@ -44,10 +45,10 @@ export class ListemployeesComponent implements OnInit {
 
   // tslint:disable-next-line: use-lifecycle-interface
   ngAfterViewInit(): void {
-     // this.dataSource.sort = this.sort;
+    this.dataSource.sort = this.sort;
   }
 
-  searchUser(searchValue: string): void {
+  searchEmployees(searchValue: string): void {
     searchValue = searchValue.trim();
     searchValue.toLocaleLowerCase();
     this.dataSource.filter = searchValue;
@@ -103,5 +104,10 @@ export class ListemployeesComponent implements OnInit {
       data: error,
       width: '250px'
     });
+  }
+
+  toggleChange(): void {
+     // this.filter_ActiveUsers = !this.filter_ActiveUsers;
+    this.loadEmployees();
   }
 }
