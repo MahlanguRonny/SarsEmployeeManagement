@@ -2,49 +2,125 @@
 <div class="container">
     <div class="se-container " style="width:100%">
       <br/>         
-     <h4 class="pull-left">Employee Details</h4>     
+     <h4 class="pull-left">Employee Details</h4>
           
-      <div class="rowspacesmall"></div>      
-    <mat-card class="example-card" class="table-bordered">
+      <div class="rowspacesmall"></div>
       <form [formGroup]="empEditForm" (ngSubmit)="onSubmit()" *ngIf="empEditForm">
-        <div class="row">
-        <mat-form-field class="col-6">
-          <input matInput placeholder="First Name" formControlName="firstName">
-          <mat-error>
-            <span *ngIf="!empEditForm.get('firstName')?.hasError && empEditForm.get('FirstName')?.touched">Please enter first name</span>
-          </mat-error>
-        </mat-form-field>
-     
-        <mat-form-field class="col-6">
-          <input matInput placeholder="Surname" formControlName="surname">
-          <mat-error>
-            <span *ngIf="!empEditForm.get('surname')?.valid && empEditForm.get('Surname')?.touched">Please enter surname</span>
-          </mat-error>
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <mat-form-field class="col-6">
-          <input matInput placeholder="Employee Number" formControlName="employeeNumber" [readonly]="true">
-          <mat-error>
-            <span *ngIf="!empEditForm.get('employeeNumber')?.valid && empEditForm.get('employeeNumber')?.touched">Please enter windows logon name</span>
-          </mat-error>
-        </mat-form-field>
-          <div class="col-6"><mat-label>Is User Deleted? </mat-label>
-        <mat-checkbox formControlName="active" name="active" class="form-checkbox" id="active" value="Active" placeholder="Is user active">
-        </mat-checkbox> 
-      </div>
-      </div>
+      <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Person Details
+            </mat-panel-title>
+            <mat-panel-description>
+              Click/expand to see personal details
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-card class="example-card">
+              <div class="row">
+              <mat-form-field class="col-6">
+                <input matInput placeholder="First Name" formControlName="firstName">
+                <mat-error>
+                  <span *ngIf="!empEditForm.get('firstName')?.hasError && empEditForm.get('FirstName')?.touched">Please enter first name</span>
+                </mat-error>
+              </mat-form-field>
+           
+              <mat-form-field class="col-6">
+                <input matInput placeholder="Surname" formControlName="surname">
+                <mat-error>
+                  <span *ngIf="!empEditForm.get('surname')?.valid && empEditForm.get('Surname')?.touched">Please enter surname</span>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="row">
+              <mat-form-field class="col-6">
+                <input matInput placeholder="Employee Number" formControlName="employeeNumber">
+                <mat-error>
+                  <span *ngIf="!empEditForm.get('employeeNumber')?.valid && empEditForm.get('employeeNumber')?.touched">Please enter employee number</span>
+                </mat-error>
+              </mat-form-field>
+                <div class="col-6"><mat-label>Is User Deleted? </mat-label>
+              <mat-checkbox formControlName="active" name="active" class="form-checkbox" id="active" value="Active" placeholder="Is user active">
+              </mat-checkbox> 
+            </div>
+            </div>             
+          </mat-card>
+        </mat-expansion-panel>
+        <!-- contact details -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Contact Details
+            </mat-panel-title>
+            <mat-panel-description>
+              Click/expand to see contact details
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-card class="example-card">
+            <div class="row">
+                <input matInput placeholder="Mobile Number" formControlName="employeeId" [hidden]="true">
+              <mat-form-field class="col-6">
+                <input matInput placeholder="Mobile Number" formControlName="mobileNumber">
+                <mat-error>
+                  <span *ngIf="!empEditForm.get('mobileNumber')?.valid && empEditForm.get('mobileNumber')?.touched">Please mobile number</span>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="col-6">
+                <input matInput placeholder="Email Address" formControlName="emailAddress">
+                <mat-error>
+                  <span *ngIf="!empEditForm.get('emailAddress')?.valid && empEditForm.get('emailAddress')?.touched">Please mobile number</span>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="col-6">
+                <input matInput placeholder="LinkedIn Page Link" formControlName="linkedInLink">
+              </mat-form-field>
+              <mat-form-field class="col-6">
+                <input matInput placeholder="Facebook page link" formControlName="facebookLink">
+              </mat-form-field>
+              <mat-form-field class="col-6">
+                <input matInput placeholder="Mobile Number" formControlName="landLineNumber">
+              </mat-form-field>
+            </div>     
+          </mat-card>
+        </mat-expansion-panel>
+         <!-- Address details -->
+         <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Address Details
+            </mat-panel-title>
+            <mat-panel-description>
+              Click/expand to see address details
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-card class="example-card">
+            <div class="row">
+              <mat-form-field class="col-6">
+                <input matInput placeholder="City Name" formControlName="city">
+              </mat-form-field>
+              <mat-form-field class="col-6">
+                <input matInput placeholder="Suburb" formControlName="suburb">
+              </mat-form-field>
+              <mat-form-field class="col-6">
+                <input matInput placeholder="postal code" formControlName="postalCode">
+              </mat-form-field>
+              <mat-form-field class="col-6">
+                <input matInput placeholder="Street Name" formControlName="streetName">
+              </mat-form-field>
+            </div>     
+          </mat-card>
+        </mat-expansion-panel>
+      </mat-accordion>
       <br/>
-        <div class="row">
-              <div class="col-6">
-                  <button  class="btn btn-primary">Update</button>
-              </div>
-              <div class="col-6">
-                  <button type="button" class="btn btn-primary" [routerLink]="'/Usermanagement/list-users'">Cancel</button>
-              </div>                  
-          </div>      
-      </form>
-    </mat-card>
+              <div class="row">
+                    <div class="col-6">
+                        <button  class="btn btn-primary">Update</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn btn-primary" [routerLink]="'components/listemployees'">Cancel</button>
+                    </div>                  
+                </div> 
+      </form> 
   </div>
   </div>
   

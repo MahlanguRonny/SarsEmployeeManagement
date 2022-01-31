@@ -8,7 +8,7 @@ surname: string;
 employeeNumber: string;
 active: boolean;
 contactDetailsId: number;
-addressDetailsId: number;
+AddressDetailsId: number;
 contactDetailDto: IContactDetailDto;
 addressDto: IAddressDto;
 }

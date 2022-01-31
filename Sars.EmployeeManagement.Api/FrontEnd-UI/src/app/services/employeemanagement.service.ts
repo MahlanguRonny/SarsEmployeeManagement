@@ -26,7 +26,8 @@ export class EmployeemanagementService {
       return this.http.get<IEmployeeDto>(`${this.employeeManagementApi}/api/employee/GetEmployeeById/${id}`);
     }
 
-    updateEmployee(employeeDto: IEmployeeDto){
+    updateEmployee(employeeDto: IEmployeeDto): Observable<object>{
+      console.log('to the api ' + JSON.stringify(employeeDto));
       return this.http.put(`${this.employeeManagementApi}/api/employee/UpdateEmployee`, employeeDto);
     }
 }
